@@ -69,6 +69,20 @@ class lost:
         else:
             print ('Der Astronaut hat kein Sauerstoff mehr!')
             print ('Spiel ist verloren')
+            print ('Bitte eine beliebige Taste drücken. Dann werden die Lösungen verraten')
+            self.pressAnyKey()
+            print ('Die richtigen Zahlen wären gewesen: ')
+            print ('X : ')
+            print (zufallX)
+            print ('\n')
+            print ('Y : ')
+            print (zufallY)
+            print ('\n')
+            print ('Z : ')
+            print (zufallZ)
+            print ('\n\n')
+            self.pressAnyKey()
+            
 
     def gefunden(self, runde):
         self.endzeit = datetime.datetime.now()
@@ -103,6 +117,9 @@ class lost:
 
     def __init__(self):
         self.start()
+
+    def pressAnyKey(pressedKey):
+        pressedKey = input('Bitte eine beliebige Taste drücken!\n')
 
 
 def endseqenz():
