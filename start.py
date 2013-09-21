@@ -8,25 +8,31 @@ import lost_in_space
 import gettext
 gettext.install('message')
 
-#Hauptteil
-aktion = ''
-while aktion != 'q':
-    print ('=== Lost in Space ===')
-    print ('s = Start')
-    print ('r = Spielregeln')
-    print ('e = Endsequenz')
-    print ('b = Bestenliste')
-    print ('q = Beenden')
-    print ('Bitte Aktion eingeben: ')
-    aktion = input()
-    if aktion == 's':
-        lost_in_space.lost()
-    elif aktion == 'r':
-        lost_in_space.spielregeln()
-    elif aktion == 'e':
-        lost_in_space.endseqenz()
-    elif aktion == 'b':
-        lost_in_space.anzeigeliste()
-    elif aktion != 'q':
-        print ('  !!!! Falsche Eingabe !!!!')
-print ('Ende - Bis zum nächsten Mal')
+
+def ende():
+    print ('Auf Wiedersehen und bis zum nächsten Male')
+    quit()
+
+
+def handle_menu(menu):
+    while True:
+        print ('=== Lost in Space ===')
+        for index, item in enumerate(menu, 1):
+            print("{}  {}".format(index, item[0]))
+        choice = int(input("Ihre Wahl? ")) - 1
+        if 0 <= choice < len(menu):
+            menu[choice][1]()
+        else:
+            print("Bitte nur Zahlen im Bereich 1 - {} eingeben".format(
+                                                                    len(menu)))
+
+menu = [
+    ["Spielstart", lost_in_space.lost],
+    ["Spielregeln", lost_in_space.spielregeln],
+    ["Endsequenz", lost_in_space.endseqenz],
+    ["Bestenliste", lost_in_space.anzeigeliste],
+    ["Beenden", ende]
+]
+
+handle_menu(menu)
+
