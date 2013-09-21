@@ -69,6 +69,10 @@ class lost:
         else:
             print ('Der Astronaut hat kein Sauerstoff mehr!')
             print ('Spiel ist verloren')
+            print ('Die richtigen Zahlen wären gewesen: ')
+            print (zufallX)
+            print (zufallY)
+            print (zufallZ)
 
     def gefunden(self, runde):
         self.endzeit = datetime.datetime.now()
