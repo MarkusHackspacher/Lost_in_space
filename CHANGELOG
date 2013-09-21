@@ -1,6 +1,12 @@
 29.08.2013            Erster Upload des Programms, Markus Hackspacher
 
 21.09.2013            Nach einem verlorenen Spiel wird nach einem Tastendruck auf Enter die Lösung ausgegeben. 
-                              Nach einem erneuten Tastendruck - ebenfalls auf Enter - gelangt man wieder ins Hauptmenü des Spiels.
-                              Sascha Mester
-                              
+                      Nach einem erneuten Tastendruck - ebenfalls auf Enter - gelangt man wieder in das Haupt-
+                      menü des Spiels. Sascha Mester
+
+21.09.2013            Der Quellcode für das Spielmenü wurde geändert. Der Menü-Quellcode unterliegt der 
+                      GNU General Public License und ist dem Tutorial
+                      https://github.com/Lysander/snippets/blob/master/Python/python-misc/simplemenus/TUTORIAL.md
+                      entnommen. (C) 2012, Christian Hausknecht. 
+                      Übernommen durch Sascha Mester
+
