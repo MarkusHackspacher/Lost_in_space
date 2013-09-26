@@ -15,6 +15,9 @@ def ende():
 
 
 def handle_menu(menu):
+    # Das Menü wurde gemäß diesem Tutorial erstellt : 
+    # github.com/Lysander/snippets/blob/master/Python/python-misc/simplemenus/TUTORIAL.md
+
     while True:
         print ('=== Lost in Space ===')
         for index, item in enumerate(menu, 1):
