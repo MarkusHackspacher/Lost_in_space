@@ -1,4 +1,6 @@
-﻿
+﻿Lost in Space
+=============
+
 Finden sie den Astronaut im Korrdinatensystem,
 bei dem das Raumschiff während eines Asteroidensturm beschädigt wurde,
 und alle Systeme ausgefallen sind!
@@ -13,7 +15,7 @@ Das Programm verzichtet auf ein Grafisches User Interface.
 Das Programm läuft auf MacOS, Windows und Linux,
 und überall dort wo sich Python installieren läßt!
 
-Das Programm benötigt Python 3 www.python.org/download/ 
+Das Programm benötigt Python 3.x www.python.org/download/ 
 
 Start mit: 
 python start.py
