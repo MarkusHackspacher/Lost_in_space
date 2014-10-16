@@ -2,87 +2,122 @@
 # -*- coding: utf-8 -*-
 """lost_in_space.py,v 0.1 2010/12/20 Markus Hackspacher cc by-sa
 2013 Markus Hackspacher: pep8
+2014 Markus Hackspacher: Unittest
 """
 
 import random
-import datetime
 import sqlite3
+import datetime
+import unittest
+
+
+class TestSequenceFunctions(unittest.TestCase):
+
+    def test_spielregel(self):
+        spielregeln()
+
+    def test_endseqenz(self):
+        endseqenz()
+
+    def test_anzeigeliste(self):
+        anzeigeliste()
+
+    def test_numberguessing3(self):
+        a = numberguessing(3, 100)
+        self.assertEqual(a.bet([a.game[0], a.game[1] - 1, a.game[2] + 1]),
+                         ['=', '<', '>'])
+        a.evaltest = ['eval', 'too high', 'too low']
+        self.assertEqual(a.bet(a.game), ['eval', 'eval', 'eval'])
+        self.assertEqual(a.bet(z - 1 for z in a.game),
+                         ['too low', 'too low', 'too low'])
+        self.assertEqual(a.bet(z + 1 for z in a.game),
+                         ['too high', 'too high', 'too high'])
+        a.evaltest = ['=', '>', '<']
+
+    def test_numberguessing2(self):
+        a = numberguessing(2, 100)
+        self.assertEqual(a.bet([a.game[0], a.game[1] - 1]), ['=', '<'])
+        self.assertEqual(a.bet([a.game[0], a.game[1] + 1]), ['=', '>'])
+        a.evaltest = ['eval', 'too high', 'too low']
+        self.assertEqual(a.bet(a.game), ['eval', 'eval'])
+        self.assertEqual(a.bet(z - 1 for z in a.game), ['too low', 'too low'])
+        self.assertEqual(a.bet(z + 1 for z in a.game),
+                         ['too high', 'too high'])
+
+
+class numberguessing:
+    """
+    Class numberguessing
+    """
+
+    def __init__(self, numberof, area):
+        """
+        Initialisation of numberguessing
+        numberof = How many number you want for guessing
+        area = select the highest number to guessing
+        """
+        self.game = []
+        self.evaltest = ['=', '>', '<']
+        for z in range(numberof):
+            self.game.append(int(random.random() * area) + 1)
+
+    def bet(self, numberbets):
+        """
+        numberbets = number of your bet
+        return = evaluation
+        """
+        evaluation = []
+        for numbergame, numberbet in zip(self.game, numberbets):
+            if numberbet == numbergame:
+                evaluation.append(self.evaltest[0])
+            elif numberbet > numbergame:
+                evaluation.append(self.evaltest[1])
+            elif numberbet < numbergame:
+                evaluation.append(self.evaltest[2])
+        return evaluation
+
+    def __repr__(self):
+        return "<Game numbers {}>".format(self.game)
 
 
 class lost:
-    def vergleiche(self, korrd, geraten, zufall):
-        if geraten == zufall:
-            print ("{0}: !!!Treffer!!!".format(korrd))
-        if geraten < zufall:
-            print ('{0}: Wert zu klein'.format(korrd))
-        if geraten > zufall:
-            print ('{0}: Wert zu groß'.format(korrd))
 
     def start(self):
-        zufallX = int(random.random() * 100) + 1
-        zufallY = int(random.random() * 100) + 1
-        zufallZ = int(random.random() * 100) + 1
         runde = 0
         zahl = 0
-        geratenX = 0
-        geratenY = 0
-        geratenZ = 0
+        geraten = [0, 0, 0]
         self.startzeit = datetime.datetime.now()
         print('\nStart Spiel\n')
-        #print zufallX,zufallY,zufallZ
 
-        while ((geratenX != zufallX) or (geratenY != zufallY) or
-              (geratenZ != zufallZ)) and (runde < 20):
+        while (geraten != self.numberguess.game) and (runde < 20):
             runde += 1
             print ('\nRunde: {0}'.format(runde))
-            try:
-                zahl = int(input('\n Bitte {0} eingeben: '
-                                 .format('X-Korrdinate')))
-            except:
-                print ('keine Zahl eingegeben, letzter Wert {0} wird '
-                       'übernommen!'.format(geratenX))
-                zahl = geratenX
-            geratenX = zahl
-            try:
-                zahl = int(input('\n Bitte {0} eingeben: '
-                                 .format('Y-Korrdinate')))
-            except:
-                print ('keine Zahl eingegeben, letzter Wert {0} wird '
-                       'übernommen!'.format(geratenY))
-                zahl = geratenY
-            geratenY = zahl
-            try:
-                zahl = int(input('\n Bitte {0} eingeben: '
-                                 .format('Z-Korrdinate')))
-            except:
-                print ('keine Zahl eingegeben, letzter Wert {0} wird '
-                       'übernommen!'.format(geratenZ))
-                zahl = geratenZ
-            geratenZ = zahl
-            self.vergleiche('X-Korrdinate', geratenX, zufallX)
-            self.vergleiche('Y-Korrdinate', geratenY, zufallY)
-            self.vergleiche('Z-Korrdinate', geratenZ, zufallZ)
+            for z in range(3):
+                try:
+                    zahl = int(input('\n Bitte {0}-Korrdinate eingeben: '
+                                     .format(self.coordinate[z])))
+                except:
+                    print ('keine Zahl eingegeben, letzter Wert {0} wird '
+                           'übernommen!'.format(geraten[z]))
+                    zahl = geraten[z]
+                geraten[z] = zahl
+            zufall = self.numberguess.bet(geraten)
+            for coord, vergleiche in zip(self.coordinate,
+                                         self.numberguess.bet(geraten)):
+                print ('{}-Korrdinate: {}'.format(coord, vergleiche))
 
-        if (geratenX == zufallX) and (geratenY == zufallY) and \
-           (geratenZ == zufallZ):
+        if (geraten == self.numberguess.game):
             self.gefunden(runde)
         else:
             print ('Der Astronaut hat kein Sauerstoff mehr!')
             print ('Spiel ist verloren')
-            print ('Bitte eine beliebige Taste drücken. Dann werden die Lösungen verraten')
+            print ('Bitte eine beliebige Taste drücken.'
+                   ' Dann werden die Lösungen verraten')
             self.pressAnyKey()
             print ('Die richtigen Zahlen wären gewesen: ')
-            print ('X : ')
-            print (zufallX)
-            print ('\n')
-            print ('Y : ')
-            print (zufallY)
-            print ('\n')
-            print ('Z : ')
-            print (zufallZ)
-            print ('\n\n')
+            for coord, number in zip(self.coordinate, self.numberguess.game):
+                print ('{}-Korrdinate: {}'.format(coord, number))
             self.pressAnyKey()
-            
 
     def gefunden(self, runde):
         self.endzeit = datetime.datetime.now()
@@ -102,7 +137,7 @@ class lost:
         c.execute('select d from bestenliste where runden < ? ', (runde,))
         nach_runden = len(c.fetchall())
         c.execute('select d from bestenliste where zeit < ?',
-                 (benoetige_zeit.seconds,))
+                  (benoetige_zeit.seconds,))
         nach_zeit = len(c.fetchall())
         if nach_runden < 10 or nach_zeit < 10:
             name = input('Du darfst dich jetzt in die Bestenliste eintragen,'
@@ -116,6 +151,11 @@ class lost:
         anzeigeliste()
 
     def __init__(self):
+        self.coordinate = ['X', 'Y', 'Z']
+        self.numberguess = numberguessing(3, 100)
+        self.numberguess.evaltest = ['!!!Treffer!!!',
+                                     'Wert zu groß',
+                                     'Wert zu klein']
         self.start()
 
     def pressAnyKey(pressedKey):
@@ -123,8 +163,7 @@ class lost:
 
 
 def endseqenz():
-    for i in range(40):
-        print ('Herzlichen Glückwunsch!  Du hast den Astronaut gefunden.',)
+    print ('Herzlichen Glückwunsch!  Du hast den Astronaut gefunden. \n' * 20)
     print
 
 
@@ -159,3 +198,6 @@ def anzeigeliste():
             nach_runden[0], nach_runden[1], nach_runden[2], nach_runden[3]))
         nach_runden = c.fetchone()
     c.close()
+
+if __name__ == '__main__':
+    unittest.main()
