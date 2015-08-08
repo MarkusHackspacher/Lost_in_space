@@ -3,6 +3,7 @@
 """lost_in_space.py,v 0.1 2010/12/20 Markus Hackspacher cc by-sa
 2013 Markus Hackspacher: pep8
 2014 Markus Hackspacher: Unittest
+2015 Markus Hackspacher: pep8
 """
 
 import random
@@ -43,6 +44,17 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(a.bet(z - 1 for z in a.game), ['too low', 'too low'])
         self.assertEqual(a.bet(z + 1 for z in a.game),
                          ['too high', 'too high'])
+
+
+class TestCodeFormat(unittest.TestCase):
+
+    def test_pep8_conformance(self):
+        """Test that we conform to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=False)
+        result = pep8style.check_files(['lost_in_space.py',
+                                        'start.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
 
 class numberguessing:
@@ -91,42 +103,42 @@ class lost:
 
         while (geraten != self.numberguess.game) and (runde < 20):
             runde += 1
-            print ('\nRunde: {0}'.format(runde))
+            print('\nRunde: {0}'.format(runde))
             for z in range(3):
                 try:
                     zahl = int(input('\n Bitte {0}-Korrdinate eingeben: '
                                      .format(self.coordinate[z])))
                 except:
-                    print ('keine Zahl eingegeben, letzter Wert {0} wird '
-                           'übernommen!'.format(geraten[z]))
+                    print('keine Zahl eingegeben, letzter Wert {0} wird '
+                          'übernommen!'.format(geraten[z]))
                     zahl = geraten[z]
                 geraten[z] = zahl
             zufall = self.numberguess.bet(geraten)
             for coord, vergleiche in zip(self.coordinate,
                                          self.numberguess.bet(geraten)):
-                print ('{}-Korrdinate: {}'.format(coord, vergleiche))
+                print('{}-Korrdinate: {}'.format(coord, vergleiche))
 
         if (geraten == self.numberguess.game):
             self.gefunden(runde)
         else:
-            print ('Der Astronaut hat kein Sauerstoff mehr!')
-            print ('Spiel ist verloren')
-            print ('Bitte eine beliebige Taste drücken.'
-                   ' Dann werden die Lösungen verraten')
+            print('Der Astronaut hat kein Sauerstoff mehr!')
+            print('Spiel ist verloren')
+            print('Bitte eine beliebige Taste drücken.'
+                  ' Dann werden die Lösungen verraten')
             self.pressAnyKey()
-            print ('Die richtigen Zahlen wären gewesen: ')
+            print('Die richtigen Zahlen wären gewesen: ')
             for coord, number in zip(self.coordinate, self.numberguess.game):
-                print ('{}-Korrdinate: {}'.format(coord, number))
+                print('{}-Korrdinate: {}'.format(coord, number))
             self.pressAnyKey()
 
     def gefunden(self, runde):
         self.endzeit = datetime.datetime.now()
         endseqenz()
-        print ('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
-        print ('Herzlichen Glückwunsch')
+        print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+        print('Herzlichen Glückwunsch')
         benoetige_zeit = self.endzeit - self.startzeit
-        print ('Du hast den Astronaut nach {1}s in der {0} Runde gefunden!'
-               .format(runde, benoetige_zeit.seconds))
+        print('Du hast den Astronaut nach {1}s in der {0} Runde gefunden!'
+              .format(runde, benoetige_zeit.seconds))
         conn = sqlite3.connect('datenbank.sqlite')
         c = conn.cursor()
         try:
@@ -163,16 +175,16 @@ class lost:
 
 
 def endseqenz():
-    print ('Herzlichen Glückwunsch!  Du hast den Astronaut gefunden. \n' * 20)
+    print('Herzlichen Glückwunsch!  Du hast den Astronaut gefunden. \n' * 20)
     print
 
 
 def spielregeln():
-    print ('Finden sie den Astronaut im Korrdinatensystem,')
-    print ('bei dem das Raumschiff während eines Asteroidensturm beschädigt')
-    print ('wurde, und alle Systeme ausgefallen sind!')
-    print ('Beeilen sie sich, sie haben nur 20 Runden Zeit!')
-    print ('Die Korrdinaten sind im Bereich von 0 bis 100')
+    print('Finden sie den Astronaut im Korrdinatensystem,')
+    print('bei dem das Raumschiff während eines Asteroidensturm beschädigt')
+    print('wurde, und alle Systeme ausgefallen sind!')
+    print('Beeilen sie sich, sie haben nur 20 Runden Zeit!')
+    print('Die Korrdinaten sind im Bereich von 0 bis 100')
 
 
 def anzeigeliste():
@@ -181,23 +193,24 @@ def anzeigeliste():
     try:
         c.execute('select * from bestenliste order by runden limit 10')
     except:
-        print ('keine Liste vorhanden')
+        print('keine Liste vorhanden')
         c.close()
         return
-    print ('Bestenliste sortiert nach Runden:')
+    print('Bestenliste sortiert nach Runden:')
     nach_runden = c.fetchone()
     while nach_runden is not None:
-        print ("Datum: {0} Name: {1} Runden: {2} Zeit: {3}s ".format(
+        print("Datum: {0} Name: {1} Runden: {2} Zeit: {3}s ".format(
             nach_runden[0], nach_runden[1], nach_runden[2], nach_runden[3]))
         nach_runden = c.fetchone()
     c.execute('select * from bestenliste order by zeit limit 10')
-    print ('Bestenliste sortiert nach Zeit:')
+    print('Bestenliste sortiert nach Zeit:')
     nach_runden = c.fetchone()
     while nach_runden is not None:
-        print ("Datum: {0} Name: {1} Zeit: {3}s Runden: {2}  ". format(
+        print("Datum: {0} Name: {1} Zeit: {3}s Runden: {2}  ". format(
             nach_runden[0], nach_runden[1], nach_runden[2], nach_runden[3]))
         nach_runden = c.fetchone()
     c.close()
 
 if __name__ == '__main__':
+    import pep8
     unittest.main()

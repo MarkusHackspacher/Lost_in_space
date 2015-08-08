@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """start.py,v 0.1 2010/12/20 Markus Hackspacher cc by-sa
 2013 Markus Hackspacher: pep8
+2015 Markus Hackspacher: pep8
 """
 
 import sys
@@ -13,7 +14,7 @@ gettext.install('message')
 
 
 def ende():
-    print ('Auf Wiedersehen und bis zum nächsten Mal')
+    print('Auf Wiedersehen und bis zum nächsten Mal')
     sys.exit(0)
 
 
@@ -23,7 +24,7 @@ def handle_menu(menu):
         python-misc/simplemenus/TUTORIAL.md
     """
     while True:
-        print ('=== Lost in Space ===')
+        print('=== Lost in Space ===')
         for index, item in enumerate(menu, 1):
             print("{}  {}".format(index, item[0]))
         try:
