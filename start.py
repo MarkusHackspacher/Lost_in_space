@@ -7,10 +7,20 @@
 
 import sys
 import gettext
+import webbrowser
 
 import lost_in_space
 
 gettext.install('message')
+
+
+def visithomepage():
+        """Open website
+        @return: none
+        """
+        webbrowser.open_new_tab(
+            "http://markush.cwsurf.de/joomla_17/index.php/python/"
+            "python-programme/27-game-lost-in-space")
 
 
 def ende():
@@ -42,6 +52,7 @@ menu = [
     ["Spielregeln", lost_in_space.spielregeln],
     ["Endsequenz", lost_in_space.endseqenz],
     ["Bestenliste", lost_in_space.anzeigeliste],
+    ["Hmepage", visithomepage],
     ["Beenden", ende]
 ]
 

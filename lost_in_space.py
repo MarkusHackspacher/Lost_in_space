@@ -15,15 +15,19 @@ import unittest
 class TestSequenceFunctions(unittest.TestCase):
 
     def test_spielregel(self):
+        """Test rules"""
         spielregeln()
 
     def test_endseqenz(self):
+        """Test endsequenze"""
         endseqenz()
 
     def test_anzeigeliste(self):
+        """Test list"""
         anzeigeliste()
 
     def test_numberguessing3(self):
+        """Test 1 numberguessing"""
         a = numberguessing(3, 100)
         self.assertEqual(a.bet([a.game[0], a.game[1] - 1, a.game[2] + 1]),
                          ['=', '<', '>'])
@@ -36,6 +40,7 @@ class TestSequenceFunctions(unittest.TestCase):
         a.evaltest = ['=', '>', '<']
 
     def test_numberguessing2(self):
+        """Test 2 numberguessing"""
         a = numberguessing(2, 100)
         self.assertEqual(a.bet([a.game[0], a.game[1] - 1]), ['=', '<'])
         self.assertEqual(a.bet([a.game[0], a.game[1] + 1]), ['=', '>'])
@@ -95,6 +100,7 @@ class numberguessing:
 class lost:
 
     def start(self):
+        """start"""
         runde = 0
         zahl = 0
         geraten = [0, 0, 0]
@@ -119,7 +125,7 @@ class lost:
                 print('{}-Korrdinate: {}'.format(coord, vergleiche))
 
         if (geraten == self.numberguess.game):
-            self.gefunden(runde)
+            self.astronautfound(runde)
         else:
             print('Der Astronaut hat kein Sauerstoff mehr!')
             print('Spiel ist verloren')
@@ -131,7 +137,8 @@ class lost:
                 print('{}-Korrdinate: {}'.format(coord, number))
             self.pressAnyKey()
 
-    def gefunden(self, runde):
+    def astronautfound(self, runde):
+        """astronaut is found"""
         self.endzeit = datetime.datetime.now()
         endseqenz()
         print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
