@@ -52,7 +52,7 @@ menu = [
     ["Spielregeln", lost_in_space.spielregeln],
     ["Endsequenz", lost_in_space.endseqenz],
     ["Bestenliste", lost_in_space.anzeigeliste],
-    ["Hmepage", visithomepage],
+    ["open Homepage", visithomepage],
     ["Beenden", ende]
 ]
 
