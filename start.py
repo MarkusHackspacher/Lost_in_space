@@ -19,8 +19,8 @@ def visithomepage():
         @return: none
         """
         webbrowser.open_new_tab(
-            "http://markush.cwsurf.de/joomla_17/index.php/python/"
-            "python-programme/27-game-lost-in-space")
+            "http://ratgeber---forum.de/wbb3/"
+            "index.php?page=Thread&threadID=4826")
 
 
 def ende():
