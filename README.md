@@ -1,6 +1,9 @@
 ﻿Lost in Space
 =============
 
+[![Build Status](https://drone.io/github.com/MarkusHackspacher/Lost_in_space/status.png)]
+(https://drone.io/github.com/MarkusHackspacher/Lost_in_space/latest)
+
 english
 -------
 
