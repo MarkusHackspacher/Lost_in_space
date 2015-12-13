@@ -12,57 +12,7 @@ import datetime
 import unittest
 
 
-class TestSequenceFunctions(unittest.TestCase):
-
-    def test_spielregel(self):
-        """Test rules"""
-        spielregeln()
-
-    def test_endseqenz(self):
-        """Test endsequenze"""
-        endseqenz()
-
-    def test_anzeigeliste(self):
-        """Test list"""
-        anzeigeliste()
-
-    def test_numberguessing3(self):
-        """Test 1 numberguessing"""
-        a = numberguessing(3, 100)
-        self.assertEqual(a.bet([a.game[0], a.game[1] - 1, a.game[2] + 1]),
-                         ['=', '<', '>'])
-        a.evaltest = ['eval', 'too high', 'too low']
-        self.assertEqual(a.bet(a.game), ['eval', 'eval', 'eval'])
-        self.assertEqual(a.bet(z - 1 for z in a.game),
-                         ['too low', 'too low', 'too low'])
-        self.assertEqual(a.bet(z + 1 for z in a.game),
-                         ['too high', 'too high', 'too high'])
-        a.evaltest = ['=', '>', '<']
-
-    def test_numberguessing2(self):
-        """Test 2 numberguessing"""
-        a = numberguessing(2, 100)
-        self.assertEqual(a.bet([a.game[0], a.game[1] - 1]), ['=', '<'])
-        self.assertEqual(a.bet([a.game[0], a.game[1] + 1]), ['=', '>'])
-        a.evaltest = ['eval', 'too high', 'too low']
-        self.assertEqual(a.bet(a.game), ['eval', 'eval'])
-        self.assertEqual(a.bet(z - 1 for z in a.game), ['too low', 'too low'])
-        self.assertEqual(a.bet(z + 1 for z in a.game),
-                         ['too high', 'too high'])
-
-
-class TestCodeFormat(unittest.TestCase):
-
-    def test_pep8_conformance(self):
-        """Test that we conform to PEP8."""
-        pep8style = pep8.StyleGuide(quiet=False)
-        result = pep8style.check_files(['lost_in_space.py',
-                                        'start.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
-
-
-class numberguessing:
+class numberguessing(object):
     """
     Class numberguessing
     """
@@ -97,7 +47,9 @@ class numberguessing:
         return "<Game numbers {}>".format(self.game)
 
 
-class lost:
+class lost(object):
+    """game class
+    """
 
     def start(self):
         """start"""
@@ -122,7 +74,7 @@ class lost:
             zufall = self.numberguess.bet(geraten)
             for coord, vergleiche in zip(self.coordinate,
                                          self.numberguess.bet(geraten)):
-                print('{}-Korrdinate: {}'.format(coord, vergleiche))
+                print('{0}-Korrdinate: {1}'.format(coord, vergleiche))
 
         if (geraten == self.numberguess.game):
             self.astronautfound(runde)
@@ -134,7 +86,7 @@ class lost:
             self.pressAnyKey()
             print('Die richtigen Zahlen wären gewesen: ')
             for coord, number in zip(self.coordinate, self.numberguess.game):
-                print('{}-Korrdinate: {}'.format(coord, number))
+                print('{0}-Korrdinate: {1}'.format(coord, number))
             self.pressAnyKey()
 
     def astronautfound(self, runde):
@@ -177,16 +129,19 @@ class lost:
                                      'Wert zu klein']
         self.start()
 
+    @staticmethod
     def pressAnyKey(pressedKey):
         pressedKey = input('Bitte eine beliebige Taste drücken!\n')
 
 
 def endseqenz():
+    """Game sequence"""
     print('Herzlichen Glückwunsch!  Du hast den Astronaut gefunden. \n' * 20)
     print
 
 
 def spielregeln():
+    """Rules"""
     print('Finden sie den Astronaut im Korrdinatensystem,')
     print('bei dem das Raumschiff während eines Asteroidensturm beschädigt')
     print('wurde, und alle Systeme ausgefallen sind!')
@@ -195,6 +150,7 @@ def spielregeln():
 
 
 def anzeigeliste():
+    """Best list"""
     conn = sqlite3.connect('datenbank.sqlite')
     c = conn.cursor()
     try:
@@ -219,5 +175,4 @@ def anzeigeliste():
     c.close()
 
 if __name__ == '__main__':
-    import pep8
-    unittest.main()
+    print('The game start with "python start.py"')

@@ -3,8 +3,10 @@
 
 [![Build Status](https://drone.io/github.com/MarkusHackspacher/Lost_in_space/status.png)]
 (https://drone.io/github.com/MarkusHackspacher/Lost_in_space/latest)
+[![Code Issues](https://www.quantifiedcode.com/api/v1/project/861eee4da7ea492697fbfa55b97438b4/badge.svg)]
+(https://www.quantifiedcode.com/app/project/861eee4da7ea492697fbfa55b97438b4)
 
-english
+English
 -------
 
 Find the astronaut in the coordinate system,
@@ -26,10 +28,7 @@ The program requires Python 3.x www.python.org/download/
 Start with:
 python start.py
 
-The program has the Creative Commons BY-SA license
-http://creativecommons.org/licenses/by-sa/3.0/deed.de
-
-deutsch
+Deutsch
 -------
 
 Finden sie den Astronaut im Koordinatensystem,
@@ -51,7 +50,3 @@ Das Programm benötigt Python 3.x www.python.org/download/
 
 Start mit: 
 python start.py
-
-Das Programm hat die Creative Commons by-sa Lizenz
-http://creativecommons.org/licenses/by-sa/3.0/deed.de
-

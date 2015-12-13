@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# lost_in_space
-
 # Copyright (C) <2015> Markus Hackspacher
 
 # This file is part of lost_in_space.
@@ -24,12 +22,16 @@ import pep8
 
 
 class TestCodeFormat(unittest.TestCase):
+    """
+    Test of the code format
+    """
 
     def test_pep8_conformance(self):
         """Test that we conform to PEP8."""
         pep8style = pep8.StyleGuide(quiet=False)
         result = pep8style.check_files(['lost_in_space.py',
                                         'test/test_pep8.py',
+                                        'test/test_sequencefunctions.py',
                                         'start.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")

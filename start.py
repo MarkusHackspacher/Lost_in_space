@@ -15,15 +15,17 @@ gettext.install('message')
 
 
 def visithomepage():
-        """Open website
-        @return: none
-        """
-        webbrowser.open_new_tab(
-            "http://ratgeber---forum.de/wbb3/"
-            "index.php?page=Thread&threadID=4826")
+    """Open website
+
+    :return: none
+    """
+    webbrowser.open_new_tab("http://ratgeber---forum.de/wbb3/"
+                            "index.php?page=Thread&threadID=4826")
 
 
 def ende():
+    """End sequence and game exit
+    """
     print('Auf Wiedersehen und bis zum nächsten Mal')
     sys.exit(0)
 
@@ -36,7 +38,7 @@ def handle_menu(menu):
     while True:
         print('=== Lost in Space ===')
         for index, item in enumerate(menu, 1):
-            print("{}  {}".format(index, item[0]))
+            print("{0}  {1}".format(index, item[0]))
         try:
             choice = int(input("Ihre Wahl? ")) - 1
         except:
@@ -56,4 +58,5 @@ menu = [
     ["Beenden", ende]
 ]
 
-handle_menu(menu)
+if __name__ == '__main__':
+    handle_menu(menu)
