@@ -41,7 +41,7 @@ def handle_menu(menu):
             print("{0}  {1}".format(index, item[0]))
         try:
             choice = int(input("Ihre Wahl? ")) - 1
-        except:
+        except ValueError:
             choice = -1
         if 0 <= choice < len(menu):
             menu[choice][1]()

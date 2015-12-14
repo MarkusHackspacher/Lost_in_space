@@ -111,7 +111,7 @@ class LostInSpace(object):
         c = conn.cursor()
         try:
             c.execute('select * from bestenliste')
-        except:
+        except sqlite3.OperationalError:
             c.execute("create table bestenliste (d date, name text,"
                       "runden INTEGER, zeit INTEGER, stufe INTEGER)")
         c.execute('select d from bestenliste where runden < ? ', (runde,))
@@ -160,7 +160,7 @@ def anzeigeliste():
     c = conn.cursor()
     try:
         c.execute('select * from bestenliste order by runden limit 10')
-    except:
+    except sqlite3.OperationalError:
         print('keine Liste vorhanden')
         c.close()
         return
