@@ -50,7 +50,7 @@ def handle_menu(menu):
                 len(menu)))
 
 menu = [
-    ["Spielstart", lost_in_space.lost],
+    ["Spielstart", lost_in_space.LostInSpace],
     ["Spielregeln", lost_in_space.spielregeln],
     ["Endsequenz", lost_in_space.endseqenz],
     ["Bestenliste", lost_in_space.anzeigeliste],

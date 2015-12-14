@@ -9,10 +9,9 @@
 import random
 import sqlite3
 import datetime
-import unittest
 
 
-class numberguessing(object):
+class NumberGuessing(object):
     """
     Class numberguessing
     """
@@ -47,14 +46,25 @@ class numberguessing(object):
         return "<Game numbers {}>".format(self.game)
 
 
-class lost(object):
+class LostInSpace(object):
     """game class
     """
+
+    def __init__(self):
+        """initial game
+
+        :return:
+        """
+        self.coordinate = ['X', 'Y', 'Z']
+        self.numberguess = NumberGuessing(3, 100)
+        self.numberguess.evaltest = ['!!!Treffer!!!',
+                                     'Wert zu groß',
+                                     'Wert zu klein']
+        self.start()
 
     def start(self):
         """start"""
         runde = 0
-        zahl = 0
         geraten = [0, 0, 0]
         self.startzeit = datetime.datetime.now()
         print('\nStart Spiel\n')
@@ -66,12 +76,11 @@ class lost(object):
                 try:
                     zahl = int(input('\n Bitte {0}-Korrdinate eingeben: '
                                      .format(self.coordinate[z])))
-                except:
+                except ValueError:
                     print('keine Zahl eingegeben, letzter Wert {0} wird '
                           'übernommen!'.format(geraten[z]))
                     zahl = geraten[z]
                 geraten[z] = zahl
-            zufall = self.numberguess.bet(geraten)
             for coord, vergleiche in zip(self.coordinate,
                                          self.numberguess.bet(geraten)):
                 print('{0}-Korrdinate: {1}'.format(coord, vergleiche))
@@ -83,11 +92,11 @@ class lost(object):
             print('Spiel ist verloren')
             print('Bitte eine beliebige Taste drücken.'
                   ' Dann werden die Lösungen verraten')
-            self.pressAnyKey()
+            self.press_any_key()
             print('Die richtigen Zahlen wären gewesen: ')
             for coord, number in zip(self.coordinate, self.numberguess.game):
                 print('{0}-Korrdinate: {1}'.format(coord, number))
-            self.pressAnyKey()
+            self.press_any_key()
 
     def astronautfound(self, runde):
         """astronaut is found"""
@@ -121,23 +130,19 @@ class lost(object):
         c.close()
         anzeigeliste()
 
-    def __init__(self):
-        self.coordinate = ['X', 'Y', 'Z']
-        self.numberguess = numberguessing(3, 100)
-        self.numberguess.evaltest = ['!!!Treffer!!!',
-                                     'Wert zu groß',
-                                     'Wert zu klein']
-        self.start()
-
     @staticmethod
-    def pressAnyKey(pressedKey):
-        pressedKey = input('Bitte eine beliebige Taste drücken!\n')
+    def press_any_key():
+        """Wait for press enter
+
+        :return:
+        """
+        input('Bitte eine beliebige Taste drücken!\n')
 
 
 def endseqenz():
     """Game sequence"""
     print('Herzlichen Glückwunsch!  Du hast den Astronaut gefunden. \n' * 20)
-    print
+    print()
 
 
 def spielregeln():

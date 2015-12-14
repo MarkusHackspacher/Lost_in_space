@@ -22,6 +22,10 @@ import lost_in_space
 
 
 class TestSequenceFunctions(unittest.TestCase):
+    """
+    Test rules, endsequenze, list
+    and number guessing
+    """
 
     @staticmethod
     def test_spielregel():
@@ -40,7 +44,7 @@ class TestSequenceFunctions(unittest.TestCase):
 
     def test_numberguessing3(self):
         """Test 1 numberguessing"""
-        a = lost_in_space.numberguessing(3, 100)
+        a = lost_in_space.NumberGuessing(3, 100)
         self.assertEqual(a.bet([a.game[0], a.game[1] - 1, a.game[2] + 1]),
                          ['=', '<', '>'])
         a.evaltest = ['eval', 'too high', 'too low']
@@ -53,7 +57,7 @@ class TestSequenceFunctions(unittest.TestCase):
 
     def test_numberguessing2(self):
         """Test 2 numberguessing"""
-        a = lost_in_space.numberguessing(2, 100)
+        a = lost_in_space.NumberGuessing(2, 100)
         self.assertEqual(a.bet([a.game[0], a.game[1] - 1]), ['=', '<'])
         self.assertEqual(a.bet([a.game[0], a.game[1] + 1]), ['=', '>'])
         a.evaltest = ['eval', 'too high', 'too low']
