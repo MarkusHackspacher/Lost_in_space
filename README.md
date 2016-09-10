@@ -3,8 +3,6 @@
 
 [![Build Status](https://drone.io/github.com/MarkusHackspacher/Lost_in_space/status.png)]
 (https://drone.io/github.com/MarkusHackspacher/Lost_in_space/latest)
-[![Code Issues](https://www.quantifiedcode.com/api/v1/project/861eee4da7ea492697fbfa55b97438b4/badge.svg)]
-(https://www.quantifiedcode.com/app/project/861eee4da7ea492697fbfa55b97438b4)
 
 English
 -------
