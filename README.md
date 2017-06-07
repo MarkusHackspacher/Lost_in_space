@@ -1,5 +1,6 @@
 Lost in Space
 =============
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f1f9ece08e374af499203eafa814c6e4)](https://www.codacy.com/app/MarkusHackspacher/Lost_in_space?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MarkusHackspacher/Lost_in_space&amp;utm_campaign=Badge_Grade)
 
 English
 -------
