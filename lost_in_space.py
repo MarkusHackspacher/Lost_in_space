@@ -22,10 +22,8 @@ class NumberGuessing(object):
         numberof = How many number you want for guessing
         area = select the highest number to guessing
         """
-        self.game = []
         self.evaltest = ['=', '>', '<']
-        for z in range(numberof):
-            self.game.append(int(random.random() * area) + 1)
+        self.game = [(int(random.random() * area) + 1) for _ in range(numberof)]
 
     def bet(self, numberbets):
         """
