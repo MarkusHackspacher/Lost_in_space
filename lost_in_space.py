@@ -4,11 +4,12 @@
 2013 Markus Hackspacher: pep8
 2014 Markus Hackspacher: Unittest
 2015 Markus Hackspacher: pep8
+2017 MH List Comprehension
 """
 
+import datetime
 import random
 import sqlite3
-import datetime
 
 
 class NumberGuessing(object):
@@ -23,7 +24,8 @@ class NumberGuessing(object):
         area = select the highest number to guessing
         """
         self.evaltest = ['=', '>', '<']
-        self.game = [(int(random.random() * area) + 1) for _ in range(numberof)]
+        self.game = [(int(random.random() * area) + 1)
+                     for _ in range(numberof)]
 
     def bet(self, numberbets):
         """
@@ -176,6 +178,7 @@ def anzeigeliste():
             nach_runden[0], nach_runden[1], nach_runden[2], nach_runden[3]))
         nach_runden = c.fetchone()
     c.close()
+
 
 if __name__ == '__main__':
     print('The game start with "python start.py"')

@@ -5,8 +5,8 @@
 2015 Markus Hackspacher: pep8
 """
 
-import sys
 import gettext
+import sys
 import webbrowser
 
 import lost_in_space
@@ -49,14 +49,14 @@ def handle_menu(menu):
             print("Bitte nur Zahlen im Bereich 1 - {} eingeben".format(
                 len(menu)))
 
+
 menu = [
     ["Spielstart", lost_in_space.LostInSpace],
     ["Spielregeln", lost_in_space.spielregeln],
     ["Endsequenz", lost_in_space.endseqenz],
     ["Bestenliste", lost_in_space.anzeigeliste],
     ["open Homepage", visithomepage],
-    ["Beenden", ende]
-]
+    ["Beenden", ende]]
 
 if __name__ == '__main__':
     handle_menu(menu)

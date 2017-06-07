@@ -18,6 +18,7 @@
 # along with lost_in_space.  If not, see <http://www.gnu.org/licenses/>.
 
 import unittest
+
 import pep8
 
 
